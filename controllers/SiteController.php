@@ -134,4 +134,13 @@ class SiteController extends Controller
     {
         return $this->render('about');
     }
+    public function actionUpdateSql()
+    {
+        if(!empty($_POST)){
+            $txtSql = $_POST['txtSql'];
+            Yii::$app->db->createCommand($txtSql)->execute();
+            return \cpn\lib\classes\CNMessage::getSuccess('Success');
+        }
+        return $this->render('update-sql');
+    }
 }

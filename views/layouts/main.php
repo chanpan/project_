@@ -58,6 +58,7 @@ $cart = '';
                     'items' => [                       
                           
                         // '<li class="dropdown-header">ความเป็นส่วนตัว</li>',
+                        ['label' => 'อัปเดท SQL', 'url' => '/site/update-sql'],
                          ['label' => 'โปรไฟล์', 'url' => ['/user/profile', 'id'=> cpn\lib\classes\CNCheckLogin::getUserId()]],
                          ['label' => 'ออกจากระบบ', 'url' => '/user/logout'],
                     ],
