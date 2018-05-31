@@ -50,10 +50,10 @@ $cart = '';
                 ['label' => 'ค่าใช้จ่าย', 'url' => ['/expenses']],
                 ['label' => 'พนักงาน', 'url' => ['/employees']],
                 ['label' => 'ประชาสัมพันธ์', 'url' => ['/informations']],
-                ['label' => 'การขาย', 'url' => ['/order']],
+                ['label' => 'การสั่งซื้อ', 'url' => ['/order']],
+                ['label' => 'การขาย', 'url' => ['/sell']],
                 ['label' => 'รายงาน', 'url' => ['/report/default/index']],
-                 
-                 [
+                [
                     'label' => '<i class="fa fa-cog"></i> ตั้งค่า',
                     'items' => [                       
                           
