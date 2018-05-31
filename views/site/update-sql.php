@@ -1,7 +1,7 @@
 <?php
     
 ?>
-<h1>Update SQL</h1>
+<h1>คำสั่ง SQL</h1>
 
 <textarea id="txtSql" class="form-control" rows="5" placeholder="ALTER TABLE `fruit`
 DROP COLUMN `sale_price`,
