@@ -58,6 +58,7 @@ $this->registerJs("
                 $.get(url,function(counts){
                     $('#mycartCntspan').text(counts);
                     $('#mycartCntspan').addClass('mycart_cnt');
+                    location.reload();
                 });
         });
         return false;

@@ -46,14 +46,20 @@ class Sell extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'order_id' => 'Order ID',
-            'user_id' => 'User ที่ login',
-            'mem_id' => 'Mem ID',
+            'order_id' => 'OrderID',
+            'user_id' => 'ผู้บันทึก',
+            'mem_id' => 'ชื่อลูกค้า',
             'fruit_id' => 'Fruit ID',
             'amount' => 'Amount',
             'price' => 'Price',
             'total' => 'Total',
-            'date' => 'Date',
+            'date' => 'วันที่ขาย',
         ];
+    }
+    public  function getUsers(){
+        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+    public  function getMembers(){
+        return $this->hasOne(Users::className(), ['id' => 'mem_id']);
     }
 }

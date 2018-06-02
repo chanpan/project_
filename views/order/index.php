@@ -29,14 +29,16 @@
                     echo '<label class="label label-success">จัดส่งสินค้าแล้ว</label>';
                 }
             ?></td>
-            <?php if($o->status == 0){?>
+            <?php if($o->status == 0):?>
             <td style="text-align: center;">
                 <button data-url='<?= yii\helpers\Url::to(['/order/set-status'])?>' data-id='<?= $o->id?>' class="btn btn-success btn-xs btnSetStatus"><i class="fa fa-ambulance"></i> จัดส่งสินค้าแล้ว
                 </button>
                 <button data-url='<?= yii\helpers\Url::to(['/order/delete-status'])?>' data-id='<?= $o->id?>' class="btn btn-danger btn-xs btnDeleteStatus"><i class="fa fa-trash"></i> ลบ
                 </button>
             </td>
-            <?php }?>
+            <?php else:?>
+                <td>-</td>
+            <?php endif; ?>
         </tr>
         <?php }?>
     </tbody>
@@ -52,7 +54,7 @@
         
         yii.confirm('ยืนยันการจัดส่งสินค้า', function(){
             $.get(url,{id:id,status:1}, function(data){
-                console.log(data);return false;
+                
                 if(data.status=='success'){
                     ".\cpn\lib\classes\CNNoty::Success('data.title', 'data.message').";                     
                 }else{
