@@ -32,7 +32,7 @@ class OrderDetail extends \yii\db\ActiveRecord
     {
         return [
             [['order_id', 'pro_id', 'pro_name', 'amount', 'prict', 'total'], 'required'],
-            [['order_id', 'pro_id', 'amount', 'prict', 'total'], 'integer'],
+            [['order_id', 'pro_id', 'amount', 'prict', 'total','user_id'], 'integer'],
             [['pro_name'], 'string', 'max' => 255],
         ];
     }
@@ -50,6 +50,7 @@ class OrderDetail extends \yii\db\ActiveRecord
             'amount' => 'Amount',
             'prict' => 'Prict',
             'total' => 'Total',
+            'user_id'=>'UserId'
         ];
     }
 }

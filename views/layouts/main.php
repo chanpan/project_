@@ -71,16 +71,15 @@ $cart = '';
             }
             
             $items = [
-                ['label' => '<i class="fa fa-cart-plus"></i> รถเข็นของฉัน <span id="mycartCntspan" class="mycart_cnt2">'.$cart.'</span>', 'url' => ['/cart/my-cart']],                                
+                ['label' => '<i class="fa fa-shopping-cart"></i> รถเข็นของฉัน <span id="mycartCntspan" class="mycart_cnt2">'.$cart.'</span>', 'url' => ['/cart/my-cart']],                                
                 ['label' => 'ประชาสัมพันธ์', 'url' => ['/information']],
                 ['label' => 'สั่งซื้อผลไม้', 'url' => ['/buying/index']],
                 [
-                    'label' => '<i class="fa fa-cog"></i> ตั้งค่า',
-                    'items' => [                       
-                          
-                        // '<li class="dropdown-header">ความเป็นส่วนตัว</li>',
-                         ['label' => 'โปรไฟล์', 'url' => ['/user/profile', 'id'=> cpn\lib\classes\CNCheckLogin::getUserId()]],
-                         ['label' => 'ออกจากระบบ', 'url' => '/user/logout'],
+                    'label' => cpn\lib\classes\CNCheckLogin::getName(),
+                    'items' => [
+                         ['label' => "<i class='fa fa-check-square-o'></i> รายการสั่งซื้อ", 'url' => '/order/my-order'],
+                         ['label' => "<i class='fa fa-user'></i> ข้อมูลส่วนตัว", 'url' => ['/user/profile', 'id'=> cpn\lib\classes\CNCheckLogin::getUserId()]],
+                         ['label' => "<i class='fa fa-unlock-alt'></i> ออกจากระบบ", 'url' => '/user/logout'],
                     ],
                 ],
             ];

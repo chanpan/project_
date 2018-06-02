@@ -29,6 +29,7 @@ class Order extends \yii\db\ActiveRecord
         return [
             [['locations'], 'required'],
             [['user_id'], 'integer'],
+            [['date','status'], 'safe'],
         ];
     }
 

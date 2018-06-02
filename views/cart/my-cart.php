@@ -19,6 +19,7 @@
     <div class="panel-body">
         <?php 
             $data = \cpn\lib\classes\CNCart::getCart('cart');
+            
             $total = 0;
            // print_r($data);
            
@@ -60,6 +61,8 @@
         </div>
     </div>
 </div>
+<?php if(!empty($data)):?>
 <div class="pull-right">
     <a href="<?= yii\helpers\Url::to(['/cart/checkout'])?>" class="btn btn-info"><i class="fa fa-cart-plus"></i> ชำระเงิน</a>
 </div>
+<?php endif; ?>

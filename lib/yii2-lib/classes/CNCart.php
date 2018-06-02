@@ -75,5 +75,8 @@ class CNCart {
     public static function getCountCart(){
        return count(CNCookie::GetCookie('cart'));
     }
+    public static function removeCartAll($name){
+       return CNCookie::RemoveCookie($name);
+    }
     
 }

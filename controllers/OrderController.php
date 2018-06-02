@@ -52,4 +52,10 @@ class OrderController extends \yii\web\Controller{
         $order = \app\models\Order::findOne($id)->delete();
         \Yii::$app->db->createCommand("DELETE FROM order_detail WHERE order_id=:id",[':id'=>$id])->execute();
     }
+    
+    public function actionMyOrder()
+    {
+        $user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
+        return $this->render('my-order');
+    }
 }
