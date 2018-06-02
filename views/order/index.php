@@ -13,7 +13,7 @@
             <th>ผู้สั่งซื้อ</th>
             <th>สถานที่จัดส่ง</th>
             <th>สถานะ</th>
-
+            <th style="width:200px;"></th>
         </tr>
     </thead>
     <tbody>
@@ -30,10 +30,10 @@
                 }
             ?></td>
             <?php if($o->status == 0){?>
-            <td style="width:50px;">
-                <button data-url='<?= yii\helpers\Url::to(['/order/set-status'])?>' data-id='<?= $o->id?>' class="btn btn-success btn-sm btn-block btnSetStatus">จัดส่งสินค้าแล้ว
+            <td style="text-align: center;">
+                <button data-url='<?= yii\helpers\Url::to(['/order/set-status'])?>' data-id='<?= $o->id?>' class="btn btn-success btn-xs btnSetStatus"><i class="fa fa-ambulance"></i> จัดส่งสินค้าแล้ว
                 </button>
-                <button data-url='<?= yii\helpers\Url::to(['/order/delete-status'])?>' data-id='<?= $o->id?>' class="btn btn-danger btn-sm btn-block btnDeleteStatus">ลบ
+                <button data-url='<?= yii\helpers\Url::to(['/order/delete-status'])?>' data-id='<?= $o->id?>' class="btn btn-danger btn-xs btnDeleteStatus"><i class="fa fa-trash"></i> ลบ
                 </button>
             </td>
             <?php }?>
@@ -52,8 +52,15 @@
         
         yii.confirm('ยืนยันการจัดส่งสินค้า', function(){
             $.get(url,{id:id,status:1}, function(data){
-                console.log(data);
-                location.reload();
+                console.log(data);return false;
+                if(data.status=='success'){
+                    ".\cpn\lib\classes\CNNoty::Success('data.title', 'data.message').";                     
+                }else{
+                    ".\cpn\lib\classes\CNNoty::Error('data.title', 'data.message').";
+                }
+                setTimeout(function(){
+                    location.reload();
+                },1000);
             });
 	});
         return false;

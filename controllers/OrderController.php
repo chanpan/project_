@@ -28,8 +28,23 @@ class OrderController extends \yii\web\Controller{
     {
         $id= isset($_GET['id']) ? $_GET['id'] : '';
         $status = isset($_GET['status']) ? $_GET['status'] : '';
-        //print_r($_GET);exit();
-        \Yii::$app->db->createCommand()->update('order', ['status'=>1], ['id'=>$id])->execute();
+ 
+        $order = \app\models\Order::findOne($id);
+        $order->status = 1;
+        if($order->save()){
+            $sell = new \app\models\Sell();
+            $sell->order_id = $id;
+            $sell->user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
+            $sell->mem_id = $order->user_id;
+            $sell->date = date('Y-m-d');
+            if($sell->save()){
+                return \cpn\lib\classes\CNMessage::getSuccess('บันทึกการจัดส่งสำเร็จ');
+            }else{
+                return \cpn\lib\classes\CNDumper::dump($sell->errors);
+            }
+        }
+        
+        
     }
     
     public function actionOrderDetail()

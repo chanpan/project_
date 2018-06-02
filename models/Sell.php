@@ -33,7 +33,7 @@ class Sell extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['order_id', 'user_id', 'mem_id', 'fruit_id', 'amount', 'price', 'total', 'date'], 'required'],
+            [['order_id', 'user_id', 'mem_id'], 'required'],
             [['order_id', 'user_id', 'mem_id', 'fruit_id', 'amount', 'price', 'total'], 'integer'],
             [['date'], 'safe'],
         ];
