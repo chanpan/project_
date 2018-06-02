@@ -18,7 +18,17 @@ use Yii;
 use app\models\Information;
 
 class InformationsController extends Controller {
-
+  public function beforeAction($action)
+    {
+      if($action->id =='index'  || $action->id =='create' || $action->id =='update' || $action->id =='delete')
+      {
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
+      }
+      //return true;
+      return parent::beforeAction($action);
+    } 
     public function actionIndex() { 
         
         

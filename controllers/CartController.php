@@ -4,9 +4,15 @@ namespace app\controllers;
  
 class CartController extends \yii\web\Controller{
     public function actionMyCart(){
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         return $this->render("my-cart");
     }
     public function actionCheckout(){
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $order = new \app\models\Order();
         if ($order->load(\Yii::$app->request->post()) && $order->validate()) {
             $user_id = \cpn\lib\classes\CNCheckLogin::getUserId();

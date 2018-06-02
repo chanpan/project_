@@ -3,6 +3,17 @@
 namespace app\controllers;
  
 class FruitController extends \yii\web\Controller{
+    public function beforeAction($action)
+    {
+      if($action->id =='index' || $action->id =='get-fruit' || $action->id =='create' || $action->id =='update' || $action->id =='delete')
+      {
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
+      }
+      //return true;
+      return parent::beforeAction($action);
+    }
     //put your code here
     public function actionIndex(){
         if(!\Yii::$app->request->isAjax){

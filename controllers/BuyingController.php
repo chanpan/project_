@@ -5,14 +5,21 @@ namespace app\controllers;
 class BuyingController extends \yii\web\Controller {
 
     public function actionIndex() {
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         if(\cpn\lib\classes\CNCheckLogin::canAdmin()){
             return $this->render("index");
         }else{
+            
             $data = (new \yii\db\Query())->select('*')->from('fruit')->where('amount > 0')->all();
             return $this->render("user", ['data'=>$data]);
         }
     }
     public function actionBuy() {
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
        $id = isset($_GET['id']) ? $_GET['id'] : '';
        $amount = isset($_GET['qty']) ? $_GET['qty'] : '';       
        $arrData = (new \yii\db\Query())->select("*")->from('fruit')->where(['id'=>$id])->one();
@@ -32,12 +39,18 @@ class BuyingController extends \yii\web\Controller {
         }
     }
     public function actionGetCount() {
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $out = \cpn\lib\classes\CNCart::getCountCart();
         return $out;
     }
     
 
     public function actionGetBuying() {
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $query = (new \yii\db\Query())
                 ->select(['b.id','f.name','f.image', 'b.amount','b.status','b.date','b.price','b.total','u.name as uname'])
                 ->from('buying as b')
@@ -67,6 +80,9 @@ class BuyingController extends \yii\web\Controller {
     }
     
     public function actionCreate(){
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $model = new \app\models\Buying();
         $model->user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
         $model->status = 2;
@@ -91,6 +107,9 @@ class BuyingController extends \yii\web\Controller {
         ]);
     }
     public function actionUpdate($id){
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $model = \app\models\Buying::findOne($id);
         $model->user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
          
@@ -115,12 +134,18 @@ class BuyingController extends \yii\web\Controller {
         ]);
     }
     public function actionDelete($id){ 
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $model = \app\models\Buying::findOne($id);
         if($model->delete()){ 
            return \cpn\lib\classes\CNMessage::getSuccess("ลบรายการสั่งซื้อผลไม้เรียบร้อย");
         }
     }
      public function actionGetFruit($id){ 
+         if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $model = \app\models\Fruit::findOne($id);
         if(!empty($model)){
             \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
@@ -129,6 +154,9 @@ class BuyingController extends \yii\web\Controller {
     }
     
     public function actionCheckCount() {
+        if(!\cpn\lib\classes\CNCheckLogin::canUser() && !\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
        if(!empty($_GET)){
            $id = isset($_GET['id']) ? $_GET['id'] : '';
            $count = isset($_GET['count']) ? $_GET['count'] : '';

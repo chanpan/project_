@@ -17,7 +17,17 @@ use yii\web\Controller;
 use Yii;
 use app\models\Employee;
 class EmployeesController extends Controller{
-   
+   public function beforeAction($action)
+    {
+      if($action->id =='index'  || $action->id =='create' || $action->id =='update' || $action->id =='delete')
+      {
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
+      }
+      //return true;
+      return parent::beforeAction($action);
+    } 
     public function actionIndex(){
        
         $search = isset($_GET['search']) ? $_GET['search'] : '';

@@ -5,10 +5,15 @@ use yii\web\Controller;
 use cpn\lib\classes\CNMessage;
 class UserController extends Controller{
     public function actionIndex(){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         return $this->render("index");
     }
     public function actionGetUser(){
-         
+         if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $query = (new \yii\db\Query())
                 ->select('*')
                 ->from('users');
@@ -35,6 +40,9 @@ class UserController extends Controller{
         ]);
     }
     public function actionUpdate($id){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
          $model = \app\models\Users::findOne($id);
          if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
              return CNMessage::getSuccess("แก้ไขเรียบร้อย");
@@ -45,6 +53,9 @@ class UserController extends Controller{
     }
     
     public function actionProfile($id){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
          $model = \app\models\Users::findOne($id);
          if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
              return CNMessage::getSuccess("แก้ไขโปรไฟล์เรียบร้อย");
@@ -54,6 +65,9 @@ class UserController extends Controller{
          ]);
     }
     public function actionDelete($id){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
         $user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
         $model = \app\models\Users::findOne($id);
         if($id != $user_id){
@@ -66,6 +80,7 @@ class UserController extends Controller{
     }
     
     public function actionRegister(){
+        
         $model = new \app\models\Users();
         $model->role="user";
         if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
@@ -77,6 +92,7 @@ class UserController extends Controller{
     }
     
     public function actionLogin(){
+        
         if(\cpn\lib\classes\CNCheckLogin::checkLogin()){
             return $this->redirect(['/site/index']);
         }

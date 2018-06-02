@@ -14,6 +14,17 @@ namespace app\controllers;
  * @author Sammy Guergachi <sguergachi at gmail.com>
  */
 class OrderController extends \yii\web\Controller{
+    public function beforeAction($action)
+    {
+      if($action->id =='index'  || $action->id =='set-status' || $action->id =='order-detail' || $action->id =='delete-status')
+      {
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
+      }
+      //return true;
+      return parent::beforeAction($action);
+    } 
     public function actionIndex()
     {
         $order = \app\models\Order::find()->all();
