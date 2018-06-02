@@ -21,12 +21,12 @@ class CartController extends \yii\web\Controller{
                     $detail->order_id = $order->id;
                     $detail->user_id=$user_id;
                     $detail->pro_id=$key;
-                    $detail->pro_name=$d['pro_name'];
-                    $detail->amount = $d['amount'];
-                    $detail->prict = $d['pro_price'];
-                    $detail->total = $d['sum'];
+                    $detail->pro_name   = $d['pro_name'];
+                    $detail->amount     = $d['amount'];
+                    $detail->prict      = $d['pro_price'];
+                    $detail->total      = $d['sum'];
                     $detail->save();
-                    $produc = \app\models\Fruit::findOne($detail->pro_id);
+                    $produc             = \app\models\Fruit::findOne($detail->pro_id);
                     $produc->amount -= $d['amount'];
                     $produc->save();
                 }

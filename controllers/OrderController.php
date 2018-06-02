@@ -68,7 +68,7 @@ class OrderController extends \yii\web\Controller{
                 ->where('order_id=:id',[':id'=>$_GET['id']])
                 ->all();
         
-        return $this->render('my-order-detail',[
+        return $this->renderAjax('my-order-detail',[
             'detail'=>$detail
         ]);
     }

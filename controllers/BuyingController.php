@@ -19,7 +19,7 @@ class BuyingController extends \yii\web\Controller {
        $modelArray = [
             'pro_name' => $arrData['name'],
             'pro_detail' => $arrData['name'],
-            'pro_price' => $arrData['price'],
+            'pro_price' => $arrData['sale_price'],
             'image' => $arrData['image'],
             'imagePath' => \Yii::getAlias('@web').'/uploads/',
             'amount' => (int) $amount,//จำนวนที่ลูกค้าสั่งซื้อ

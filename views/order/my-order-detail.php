@@ -1,10 +1,7 @@
 <?php
 $this->title = 'รายการสั่งซื้อทั้งหมด';
 $total=0;
-//\cpn\lib\classes\CNDumper::dump($detail);
 ?>
-<h2><?= $this->title;?></h2> 
-<a href="/order/my-order">ย้อนกลับ</a>
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="panel-title">
