@@ -61,4 +61,15 @@ class OrderController extends \yii\web\Controller{
             'order'=>$order
         ]);
     }
+    public function actionMyOrderDetail()
+    {
+        $user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
+        $detail = \app\models\OrderDetail::find()
+                ->where('order_id=:id',[':id'=>$_GET['id']])
+                ->all();
+        
+        return $this->render('my-order-detail',[
+            'detail'=>$detail
+        ]);
+    }
 }

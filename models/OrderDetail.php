@@ -53,4 +53,13 @@ class OrderDetail extends \yii\db\ActiveRecord
             'user_id'=>'UserId'
         ];
     }
+    public  function getUsers(){
+        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+    }
+    public  function getOrders(){
+        return $this->hasOne(Order::className(), ['id' => 'order_id']);
+    }
+    public  function getFruits(){
+        return $this->hasOne(Fruit::className(), ['id' => 'pro_id']);
+    }
 }

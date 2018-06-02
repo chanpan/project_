@@ -22,7 +22,7 @@ $this->title = 'รายการสั่งซื้อทั้งหมด'
                     <tbody>
                         <?php foreach ($order as $o) { ?>
                             <tr>
-                                <td><a href="">ODR<?= $o['id']; ?></a></td>
+                                <td><a href="<?= \yii\helpers\Url::to(['/order/my-order-detail','id'=>$o['id']])?>">ODR<?= $o['id']; ?></a></td>
                                 <td><?= $o['date']; ?></td>
                                 <td><?= ($o['status'] == 1) ? 'ชำระเงินแล้ว' : 'ยังไม่ชำระเงิน'; ?></td>
                             </tr>
