@@ -30,6 +30,9 @@
                 }else{
                     ".\cpn\lib\classes\CNNoty::Error('data.title', 'data.message').";
                 }
+                setTimeout(function(){
+                    location.href = '/order/my-order';
+                },1000);
             });
             return false;
         }); 

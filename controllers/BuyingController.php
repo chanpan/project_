@@ -8,7 +8,7 @@ class BuyingController extends \yii\web\Controller {
         if(\cpn\lib\classes\CNCheckLogin::canAdmin()){
             return $this->render("index");
         }else{
-            $data = (new \yii\db\Query())->select('*')->from('fruit')->all();
+            $data = (new \yii\db\Query())->select('*')->from('fruit')->where('amount > 0')->all();
             return $this->render("user", ['data'=>$data]);
         }
     }
@@ -128,6 +128,22 @@ class BuyingController extends \yii\web\Controller {
         }
     }
     
-    
+    public function actionCheckCount() {
+       if(!empty($_GET)){
+           $id = isset($_GET['id']) ? $_GET['id'] : '';
+           $count = isset($_GET['count']) ? $_GET['count'] : '';
+           $model = \app\models\Fruit::find()->where('id=:id',[':id'=>$id])->one();
+           $status = [];
+           \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
+           if($count > $model->amount){
+               $status = ['status'=>1, 'message'=>'จำนวนสินค้าเหลือไม่เพียงพอ' , 'count'=>$model->amount];
+           }else{
+               $status = ['status'=>0];
+           }
+           return $status;
+       } 
+       
+    }
 
 }

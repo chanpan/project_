@@ -1,4 +1,5 @@
 <?php
+    $this->title = "Produce";
 ?>
 <h1>สั่งซื้อผลไม้</h1>
 <div class="row">
@@ -10,16 +11,36 @@
         <div class="contents">
             <label><?= $d['name']?></label> <br>
             <label>ราคา: <?= number_format($d['sale_price'], 2)?> บาท</label> 
-            <input type="number" class="qty form-control" id="cart-<?= $d['id']?>" value="1" min="1">
+            <input data-id="<?= $d['id']?>" type="number" class="qty form-control" id="cart-<?= $d['id']?>" value="0" min="1">
         </div>
         <div class="buttons">
-            <button class="btn btn-warning btn-block btnBuy" data-id="<?= $d['id']?>"><i class="fa fa-cart-plus"></i> สั่งซื้อ</button>
+            <button disabled class="btn btn-warning btn-block btnBuy" data-id="<?= $d['id']?>"><i class="fa fa-cart-plus"></i> สั่งซื้อ</button>
         </div>
     </div>
     <?php }?>
 </div>
 <?php
 $this->registerJs("
+    $('.qty').on('change',function(){
+        let val = $(this).val();
+        let id = $(this).attr('data-id');
+        CheckCount(id,val);
+        return false;
+    });
+    function CheckCount(id,val){        
+        let url = '".yii\helpers\Url::to(['/buying/check-count'])."';
+        $.get(url, {id:id, count:val}, function(data){
+            if(data.status == 0){
+                $('.btnBuy[data-id='+id+']').attr('disabled', false);
+            }else{
+                alert(data.message);
+                $('#cart-'+id).val(data.count);
+                $('.btnBuy[data-id='+id+']').attr('disabled', false);
+            }            
+        });
+        return false;
+    }
+
     $('.btnBuy').on('click',function(){
         let id = $(this).attr('data-id');
         let pro_qty = $('#cart-'+id).val();
@@ -29,7 +50,8 @@ $this->registerJs("
            let title = 'ตรวจสอบ';
            ".\cpn\lib\classes\CNNoty::Error('title', 'message').";
            return false;    
-        }    
+        }
+        CheckCount(id,pro_qty);
         $.get(url ,{id:id, qty:pro_qty},function(data){
             ".\cpn\lib\classes\CNNoty::Success('data.title', 'data.message').";
                 url = '".yii\helpers\Url::to(['/buying/get-count'])."';

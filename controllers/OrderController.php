@@ -56,6 +56,9 @@ class OrderController extends \yii\web\Controller{
     public function actionMyOrder()
     {
         $user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
-        return $this->render('my-order');
+        $order = \app\models\Order::find()->where(['user_id'=>$user_id])->all();
+        return $this->render('my-order',[
+            'order'=>$order
+        ]);
     }
 }

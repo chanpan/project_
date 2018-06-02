@@ -26,6 +26,9 @@ class CartController extends \yii\web\Controller{
                     $detail->prict = $d['pro_price'];
                     $detail->total = $d['sum'];
                     $detail->save();
+                    $produc = \app\models\Fruit::findOne($detail->pro_id);
+                    $produc->amount -= $d['amount'];
+                    $produc->save();
                 }
                 \cpn\lib\classes\CNCart::removeCartAll('cart'); 
                 return \cpn\lib\classes\CNMessage::getSuccess('บึนทึกรายการสำเร็จ');
