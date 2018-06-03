@@ -15,6 +15,8 @@
 ])?>
 <div class="modal-body">
         <?= $form->field($model, 'email')->textInput()?>
+        <?= $form->field($model, 'username')->textInput()?>
+    <?= $form->field($model, 'password')->passwordInput()?>
         <?= $form->field($model, 'name')->textInput()?>
         <?= $form->field($model, 'sex')->inline()->radioList(['1'=>'ชาย','2'=>'หญิง'])?>
         <?= $form->field($model, 'tel')->textInput()?>

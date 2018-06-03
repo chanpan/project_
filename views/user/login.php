@@ -30,7 +30,6 @@ $this->title = 'Login';
                         <button class="btn btn-lg btn-warning btn-block" type="submit">Sign in</button>
                     </div>
                 </div>
-                <a href="<?= \yii\helpers\Url::to(['/user/register'])?>" class="text-center new-account">สมัครสมาชิก </a>
             </div>
         </div>
     </div>

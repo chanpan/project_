@@ -39,13 +39,27 @@ class UserController extends Controller{
             'dataProvider'=>$dataProvider
         ]);
     }
+    
+    public function actionCreate(){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+           return $this->redirect(['/user/login']); 
+        }
+         $model = new \app\models\Users();
+         if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
+             return CNMessage::getSuccess("เพิ่มผู้ใช้สำเร็จ");
+         }
+         return $this->renderAjax("create",[
+             'model'=>$model
+         ]);
+    }
+    
     public function actionUpdate($id){
         if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
            return $this->redirect(['/user/login']); 
         }
          $model = \app\models\Users::findOne($id);
          if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
-             return CNMessage::getSuccess("แก้ไขเรียบร้อย");
+             return CNMessage::getSuccess("แก้ไขผู้ใช้เรียบร้อย");
          }
          return $this->renderAjax("update",[
              'model'=>$model

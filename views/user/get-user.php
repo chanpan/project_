@@ -1,6 +1,15 @@
-<?=
 
-\yii\grid\GridView::widget([
+ 
+        <div class="pull-right">
+            <?php 
+                echo \yii\bootstrap\Html::a("<i class='fa fa-plus'></i> เพิ่ม", \yii\helpers\Url::to(['/user/create']), ['data-action'=>'create','class'=>'btn btn-sm btn-success']);
+            ?>
+        </div><br>
+ 
+    
+<?php
+
+echo \yii\grid\GridView::widget([
     'dataProvider' => $dataProvider,
     'tableOptions' => ['id'=>'tables','class' => 'table table-hover table-bordered table-responsive'],
     'columns' => [
@@ -68,15 +77,23 @@ $this->registerJs("
     $('.btn').on('click',function(e){
         let actions = $(this).attr('data-action');
         let url = $(this).attr('href');
-         
-        if(actions == 'update'){
+        
+        if(actions == 'create'){
            $('#modal-user .modal-content').html('<div class=\'text-center\'><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i></div>');
            $.get(url,function(data){
                 $('#modal-user .modal-content').html(data);
                 $('#modal-user').modal('show');
            });
         }
-        if(actions == 'delete'){
+        
+        else if(actions == 'update'){
+           $('#modal-user .modal-content').html('<div class=\'text-center\'><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i></div>');
+           $.get(url,function(data){
+                $('#modal-user .modal-content').html(data);
+                $('#modal-user').modal('show');
+           });
+        }
+        else if(actions == 'delete'){
           yii.confirm('คุณต้องการลบผู้ใช้นี้หรือไม่', function(){
               $.get(url,function(data){
                 if(data.status=='success'){
