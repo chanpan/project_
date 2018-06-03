@@ -91,6 +91,7 @@ class BuyingController extends \yii\web\Controller {
             $model->date = Date('Y-m-d');
             if ($model->save()) {
                 if($model->status == 1){
+                      
                     $dataFruit= \app\models\Fruit::findOne($model->fruit_id);
                     $dataFruit->amount += $model->amount;
 //                    $dataFruit->price  += $model->price;

@@ -44,10 +44,10 @@ class Information extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'title' => 'Title',
-            'detail' => 'Detail',
-            'user_id' => 'User ID',
-            'date' => 'Date',
+            'title' => 'ไตเติ้ล',
+            'detail' => 'รายละเอียด',
+            'user_id' => 'ผู้ประกาศ',
+            'date' => 'วันที่',
         ];
     }
     public  function getUsers(){
