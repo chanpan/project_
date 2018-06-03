@@ -87,7 +87,7 @@ class BuyingController extends \yii\web\Controller {
         $model->user_id = \cpn\lib\classes\CNCheckLogin::getUserId();
         $model->status = 2;
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
-            
+            $model->total = $_POST['Buying']['total'];
             $model->date = Date('Y-m-d');
             if ($model->save()) {
                 if($model->status == 1){

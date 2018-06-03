@@ -33,7 +33,7 @@
         [
             'attribute' => 'total',
             'label' => 'ราคารวม',
-            'value' => 'price'
+            'value' => 'total'
         ],
         [
           'attribute' => 'uname',
