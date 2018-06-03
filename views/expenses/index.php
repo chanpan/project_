@@ -42,9 +42,9 @@ $this->title = "ค่าใช้จ่าย";
                 'value'=>'users.username'
             ],
             [
-                'attribute'=>'emp_id',
+                'label'=>'ชื่อพนักงาน',
                 'value'=>function($model){
-                    $data = (new yii\db\Query())->select('name')->from('users')->where(['id'=>$model->emp_id])->one();
+                    $data = (new yii\db\Query())->select('name')->from('employee')->where(['id'=>$model->emp_id])->one();
                     return $data['name'];
                 }
             ],
