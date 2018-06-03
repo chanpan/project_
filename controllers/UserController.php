@@ -53,7 +53,7 @@ class UserController extends Controller{
     }
     
     public function actionProfile($id){
-        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin() && !\cpn\lib\classes\CNCheckLogin::canUser()){
            return $this->redirect(['/user/login']); 
         }
          $model = \app\models\Users::findOne($id);
