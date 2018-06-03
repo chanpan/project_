@@ -57,8 +57,8 @@ $cart = '';
                     'label' => '<i class="fa fa-cog"></i> ตั้งค่า',
                     'items' => [                       
                           
-                        ['label' => "<i class='fa fa-file-pdf-o'></i> เอกสาร", 'url' => '/site/doc'],
-                        ['label' => "<i class='fa fa-database'></i>  อัปเดท SQL", 'url' => '/site/update-sql'],
+                        //['label' => "<i class='fa fa-file-pdf-o'></i> เอกสาร", 'url' => '/site/doc'],
+                        //['label' => "<i class='fa fa-database'></i>  อัปเดท SQL", 'url' => '/site/update-sql'],
                         ['label' => "<i class='fa fa-user'></i> โปรไฟล์", 'url' => ['/user/profile', 'id'=> cpn\lib\classes\CNCheckLogin::getUserId()]],
                         ['label' => "<i class='fa fa-unlock-alt'></i> ออกจากระบบ", 'url' => '/user/logout'],
                     ],
