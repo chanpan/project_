@@ -6,8 +6,7 @@
     <?= $form->field($model, 'cid')->textInput(); ?>
     <?= $form->field($model, 'name')->textInput(); ?>
     <?= $form->field($model, 'address')->textarea(); ?>
-    <?= $form->field($model, 'tel')->textInput(); ?>
-    <?= $form->field($model, 'wage')->textInput(); ?>
+    <?= $form->field($model, 'tel')->textInput(); ?> 
     <?= \yii\bootstrap\Html::submitButton("บันทึก", ['class'=>'btn btn-primary'])?>
 <?php ActiveForm::end()?>
 </div>

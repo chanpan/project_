@@ -30,8 +30,8 @@ class Employee extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['cid', 'name', 'address', 'tel', 'wage'], 'required'],
-            [['cid', 'wage'], 'integer'],
+            [['cid', 'name', 'address', 'tel'], 'required'],
+             
             [['address'], 'string'],
             [['name'], 'string', 'max' => 200],
             [['tel'], 'string', 'max' => 10],
@@ -50,7 +50,7 @@ class Employee extends \yii\db\ActiveRecord
             'name' => 'ชื่อนามสกุล',
             'address' => 'ที่อยู่',
             'tel' => 'เบอร์โทรศัพท์',
-            'wage' => 'ค่าจ้างต่อวัน',
+             
         ];
     }
 }

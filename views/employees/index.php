@@ -37,7 +37,7 @@ $this->title = "จัดการข้อมูลพนักงาน";
             'name',
             'address',
             'tel',
-            'wage',
+            //'wage',
             
             ['class' => 'yii\grid\ActionColumn', 'template' => '{update} {delete}']
         ],
