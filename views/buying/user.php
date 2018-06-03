@@ -10,6 +10,7 @@
         </div>
         <div class="contents">
             <label><?= $d['name']?></label> <br>
+            <label>จำนวนคงเหลือ <?= $d['amount']?> กก.</label> <br>
             <label>ราคา: <?= number_format($d['sale_price'], 2)?> บาท</label> 
             <input data-id="<?= $d['id']?>" type="number" class="qty form-control" id="cart-<?= $d['id']?>" value="0" min="1">
         </div>
