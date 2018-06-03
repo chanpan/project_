@@ -16,7 +16,7 @@
 <div class="modal-body">
         <?= $form->field($model, 'email')->textInput()?>
         <?= $form->field($model, 'username')->textInput()?>
-    <?= $form->field($model, 'password')->passwordInput()?>
+        <?= $form->field($model, 'password')->passwordInput()?>
         <?= $form->field($model, 'name')->textInput()?>
         <?= $form->field($model, 'sex')->inline()->radioList(['1'=>'ชาย','2'=>'หญิง'])?>
         <?= $form->field($model, 'tel')->textInput()?>
@@ -32,22 +32,13 @@ $this->registerJs("
     $('#user-form').on('beforeSubmit', function(e) {
         let form = \$(this);
         let formData = form.serialize();
-        $.ajax({
-            url: form.attr('action'),
-            type: form.attr('method'),
-            data: formData,
-            success: function (data) {
-               ".\cpn\lib\classes\CNNoty::Success('data.title', 'data.message').";
-               $('#modal-user').modal('hide');
-               initUser('');
-            },
-            error: function (err) {
-               console.log(err);
-            }
-        }); 
-
-    }).on('submit', function(e){
-        e.preventDefault();
+        $.post(form.attr('action'), formData, function(data){
+            ".\cpn\lib\classes\CNNoty::Success('data.title', 'data.message').";
+            $('#modal-user').modal('hide');
+            initUser('');
+        });
+        
+        return false;
     });
 ");
 ?>

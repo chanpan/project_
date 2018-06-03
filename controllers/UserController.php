@@ -7,11 +7,11 @@ class UserController extends Controller{
     public function actionIndex(){
         if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
            return $this->redirect(['/user/login']); 
-        }
+        }//ถ้าไม่ใช้ admin จะเข้าไม่ได้
         return $this->render("index");
     }
     public function actionGetUser(){
-         if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
+        if(!\cpn\lib\classes\CNCheckLogin::canAdmin()){
            return $this->redirect(['/user/login']); 
         }
         $query = (new \yii\db\Query())
@@ -72,7 +72,7 @@ class UserController extends Controller{
         }
          $model = \app\models\Users::findOne($id);
          if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
-             return CNMessage::getSuccess("แก้ไขโปรไฟล์เรียบร้อย");
+             return CNMessage::getSuccess("แก้ไขโปรไฟล์สำเร็จ");
          }
          return $this->render("profile",[
              'model'=>$model
@@ -86,7 +86,7 @@ class UserController extends Controller{
         $model = \app\models\Users::findOne($id);
         if($id != $user_id){
             if($model->delete()){
-                return CNMessage::getSuccess("ลบผู้ใช้งานเรียบร้อย");
+                return CNMessage::getSuccess("ลบผู้ใช้งานสำเร็จ");
             }
         }else{
             return CNMessage::getError("ไม่สามารถลบตัวเองได้");

@@ -1,10 +1,12 @@
 
  
-        <div class="pull-right">
-            <?php 
-                echo \yii\bootstrap\Html::a("<i class='fa fa-plus'></i> เพิ่ม", \yii\helpers\Url::to(['/user/create']), ['data-action'=>'create','class'=>'btn btn-sm btn-success']);
-            ?>
-        </div><br>
+<div class="pull-right">
+    <?php
+    echo \yii\bootstrap\Html::a("<i class='fa fa-plus'></i> เพิ่ม", 
+            \yii\helpers\Url::to(['/user/create']), 
+            ['data-action' => 'create', 'class' => 'btn btn-xs btn-success']);
+    ?>
+</div><br>
  
     
 <?php
@@ -15,6 +17,7 @@ echo \yii\grid\GridView::widget([
     'columns' => [
         [
             'class' => 'yii\grid\SerialColumn',
+            'header'=>'ลำดับ'
         ],
         [
             'attribute' => 'username',
@@ -52,17 +55,21 @@ echo \yii\grid\GridView::widget([
             'label' => 'บทบาท',
             'value' => 'role'
         ],
-         [
+        [
             'contentOptions'=>['style'=>'text-align:center;width:150px;'],
             'class' => 'yii\grid\ActionColumn',
-            'template' => '{update} {delete}',  // the default buttons + your custom button
+            'template' => '{update} {delete}', 
             'buttons' => [
                 'update'=>function($url, $model, $key){
-                    return \yii\bootstrap\Html::a("<i class='fa fa-edit'></i> แก้ไข", \yii\helpers\Url::to(['/user/update', 'id'=>$model['id']]), ['data-action'=>'update','class'=>'btn btn-sm btn-info']);
+                    return \yii\bootstrap\Html::a("<i class='fa fa-edit'></i> แก้ไข",
+                            \yii\helpers\Url::to(['/user/update', 'id'=>$model['id']]), 
+                            ['data-action'=>'update','class'=>'btn btn-xs btn-info']);
                 },
                 'delete'=>function($url, $model, $key){
                     if($model['id'] != cpn\lib\classes\CNCheckLogin::getUserId()){
-                        return \yii\bootstrap\Html::a("<i class='fa fa-trash'></i> ลบ", \yii\helpers\Url::to(['/user/delete', 'id'=>$model['id']]), ['data-action'=>'delete','class'=>'btn btn-sm btn-danger']);
+                        return \yii\bootstrap\Html::a("<i class='fa fa-trash'></i> ลบ",
+                                \yii\helpers\Url::to(['/user/delete', 'id'=>$model['id']]), 
+                                ['data-action'=>'delete','class'=>'btn btn-xs btn-danger']);
                     }
                 }        
             ]

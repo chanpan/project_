@@ -20,18 +20,20 @@
     </div>
     <div class="panel-body">
         
-        <div class="col-md-6" style="padding: 0;margin-bottom: 20px;">
+        <div class="col-md-6">
             <div class="input-group">
                 <input type="text" class="form-control" id="txtSearch" placeholder="ค้นหา ชื่อผู้ใช้ , ชื่อ-นามสกุล">
                 <span class="input-group-btn">
                     <button id="btnSearch" class="btn btn-default" type="button"><i class="fa fa-search"></i> ค้นหา</button>
                 </span>
             </div><!-- /input-group -->
-        </div><div class="clearfix"></div>
-        
-        <div class="table-responsive">            
-            <div id="view-user"></div>
         </div>
+        <div class="col-md-12">
+            <div class="table-responsive">            
+                <div id="view-user"></div>
+            </div>
+        </div>
+        
     </div>
 </div>
 
@@ -54,7 +56,7 @@ $this->registerJs("
         });
      }
      initUser('');
-        sortUser=function(url){        
+     sortUser=function(url){        
         $('#view-user').html('<div class=\'text-center\'><i class=\"fa fa-spinner fa-pulse fa-3x fa-fw\"></i></div>');    
         $.get(url,{search:''},function(data){
             $('#view-user').html(data);

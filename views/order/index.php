@@ -20,7 +20,7 @@
         <?php foreach($order as $key=>$o){?>
         <tr>
             <td><a href="<?= yii\helpers\Url::to(['/order/order-detail', 'id'=>$o['id']])?>"><?= $o['id']?></a></td>
-            <td><?= $o->users->name?></td>
+            <td><?= isset($o->users->name) ? $o->users->name  : ''?></td>
             <td><?= $o->locations?></td>
             <td><?php 
                 if($o->status == 0){
