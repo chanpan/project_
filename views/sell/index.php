@@ -28,13 +28,13 @@ $this->title = 'การขาย';
             [
                 'label'=>'ผู้บันทึก',
                 'value'=>function($model){
-                    return $model->users->name;
+                    return isset($model->users->name) ? $model->users->name : '';
                 }
             ],
             [
                 'label'=>'ลูกค้า',
                 'value'=>function($model){
-                    return $model->members->name;
+                    return isset($model->members->name) ? $model->members->name : '';
                 }
             ],
             [
