@@ -96,4 +96,8 @@ class SiteController extends Controller
         }
         return $this->render('update-sql');
     }
+    public function actionDoc()
+    {
+       return $this->render('doc');
+    }
 }

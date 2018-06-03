@@ -27,12 +27,14 @@
     <?= \yii\bootstrap\Html::submitButton('<i class="fa fa-save"></i> บันทึก', ['class'=>'btn btn-success'])?>
 </div>
 <?php ActiveForm::end();?> 
+
 <?php
 $this->registerJs("
     $('#user-form').on('beforeSubmit', function(e) {
         let form = \$(this);
         let formData = form.serialize();
         $.post(form.attr('action'), formData, function(data){
+            //console.log(data);return false;
             ".\cpn\lib\classes\CNNoty::Success('data.title', 'data.message').";
             $('#modal-user').modal('hide');
             initUser('');

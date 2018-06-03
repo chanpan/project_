@@ -76,9 +76,9 @@ class FruitController extends \yii\web\Controller{
               $model->image = "";
           }
           if($model->save()){
-              return \cpn\lib\classes\CNMessage::getSuccess("บันทึกผลไม้เรียบร้อย");
+              return \cpn\lib\classes\CNMessage::getSuccess("บันทึกผลไม้สำเร็จ");
           }else{
-              return \cpn\lib\classes\CNMessage::getError("error");
+              return \cpn\lib\classes\CNMessage::getError(json_encode($model->errors));
           }
         }
         return $this->renderAjax("create",[
@@ -110,9 +110,9 @@ class FruitController extends \yii\web\Controller{
           }
           
           if($model->save()){
-              return \cpn\lib\classes\CNMessage::getSuccess("บันทึกผลไม้เรียบร้อย");
+              return \cpn\lib\classes\CNMessage::getSuccess("แก้ไขผลไม้สำเร็จ");
           }else{
-              return \cpn\lib\classes\CNMessage::getError("error");
+              return \cpn\lib\classes\CNMessage::getError(json_encode($model->errors));
           }
         }
         return $this->renderAjax("update",[

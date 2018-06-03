@@ -63,10 +63,10 @@ $this->registerJs("
         });
      }
 
-     $('#btnSearch').click(function(){
-            let search = $('#txtSearch').val();               
-            initUser(search);             
-            return false;
+    $('#btnSearch').click(function(){
+        let search = $('#txtSearch').val();               
+        initUser(search);             
+        return false;
     });
 ");
 ?>

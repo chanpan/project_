@@ -46,7 +46,7 @@ class UserController extends Controller{
         }
          $model = new \app\models\Users();
          if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
-             return CNMessage::getSuccess("เพิ่มผู้ใช้สำเร็จ");
+            return CNMessage::getSuccess("เพิ่มผู้ใช้สำเร็จ");
          }
          return $this->renderAjax("create",[
              'model'=>$model
@@ -59,7 +59,7 @@ class UserController extends Controller{
         }
          $model = \app\models\Users::findOne($id);
          if($model->load(\Yii::$app->request->post()) && $model->validate() && $model->save()){
-             return CNMessage::getSuccess("แก้ไขผู้ใช้เรียบร้อย");
+             return CNMessage::getSuccess("แก้ไขผู้ใช้สำเร็จ");
          }
          return $this->renderAjax("update",[
              'model'=>$model
