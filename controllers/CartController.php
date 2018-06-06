@@ -34,6 +34,8 @@ class CartController extends \yii\web\Controller{
                     $detail->save();
                     $produc             = \app\models\Fruit::findOne($detail->pro_id);
                     $produc->amount -= $d['amount'];
+                    $total = $produc->price * $d['amount'];
+                    $produc->total -= $total;
                     $produc->save();
                 }
                 \cpn\lib\classes\CNCart::removeCartAll('cart'); 

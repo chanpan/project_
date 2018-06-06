@@ -27,7 +27,7 @@ class OrderController extends \yii\web\Controller{
     } 
     public function actionIndex()
     {
-        $order = \app\models\Order::find()->all();
+        $order = \app\models\Order::find()->orderBy(['id'=>SORT_DESC])->all();
         if(\Yii::$app->request->isAjax){
             return $this->renderAjax('index', ['order'=>$order]);
         }else{
