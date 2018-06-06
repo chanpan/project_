@@ -74,6 +74,14 @@ class OrderController extends \yii\web\Controller{
     
     public function actionDeleteStatus()
     {
+        
+        $detail = \app\models\OrderDetail::find()->where(['order_id'=>$_POST['id']])->all(); 
+        foreach($detail as $d){
+            $fruit= \app\models\Fruit::find()->where(['id'=>$d['pro_id']])->one();
+            $fruit->amount += $d['amount'];
+            $fruit->total = $fruit->price * $fruit->amount;
+            $fruit->update();
+        }
         $id = isset($_POST['id']) ? $_POST['id'] : '';
         $order = \app\models\Order::findOne($id)->delete();
         \Yii::$app->db->createCommand("DELETE FROM order_detail WHERE order_id=:id",[':id'=>$id])->execute();

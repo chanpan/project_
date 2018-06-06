@@ -73,7 +73,8 @@
               
         yii.confirm('คุณต้องการลบรายการนี้ใช้นี้หรือไม่', function(){
             $.post(url,{id:id}, function(data){
-                location.reload();
+                console.log(data);
+                //location.reload();
             });
 	});
         
