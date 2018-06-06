@@ -53,6 +53,11 @@ class FruitController extends \yii\web\Controller{
     }
     public function actionCreate(){
         $model = new \app\models\Fruit();
+        
+        $model->amount=0;
+        $model->price=0;
+        $model->total=0;
+        $model->sale_price=0;
         if($model->load(\Yii::$app->request->post()) && $model->validate()){
           $model->total = ($model->price * $model->amount);
           $model->image = \yii\web\UploadedFile::getInstances($model, 'image');
