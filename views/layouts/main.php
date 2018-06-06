@@ -77,7 +77,7 @@ $cart = '';
                 [
                     'label' => cpn\lib\classes\CNCheckLogin::getName(),
                     'items' => [
-                         ['label' => "<i class='fa fa-check-square-o'></i> รายการสั่งซื้อ", 'url' => '/order/my-order'],
+                         ['label' => "<i class='fa fa-check-square-o'></i> ประวัติการสั่งซื้อ", 'url' => '/order/my-order'],
                          ['label' => "<i class='fa fa-user'></i> ข้อมูลส่วนตัว", 'url' => ['/user/profile', 'id'=> cpn\lib\classes\CNCheckLogin::getUserId()]],
                          ['label' => "<i class='fa fa-unlock-alt'></i> ออกจากระบบ", 'url' => '/user/logout'],
                     ],
