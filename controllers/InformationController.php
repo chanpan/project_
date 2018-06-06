@@ -15,7 +15,7 @@ namespace app\controllers;
  */
 class InformationController extends \yii\web\Controller{
     public function actionIndex(){
-        $model = \app\models\Information::find()->all();
+        $model = \app\models\Information::find()->orderBy(['id'=>SORT_DESC])->all();
         
         if(\Yii::$app->request->isAjax){
             return $this->renderAjax("index", ['model'=>$model]);
